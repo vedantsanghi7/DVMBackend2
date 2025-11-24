@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Ticket Details</h2>
+
+<p><strong>ID:</strong> {{ ticket.id }}</p>
+<p><strong>From:</strong> {{ ticket.source.name }}</p>
+<p><strong>To:</strong> {{ ticket.destination.name }}</p>
+{% if ticket.lines_used %}
+    <p><strong>Lines used:</strong> {{ ticket.lines_used }}</p>
+{% endif %}
+<p><strong>Price:</strong> ₹{{ ticket.price }}</p>
+<p><strong>Status:</strong> {{ ticket.status }}</p>
+<p><strong>Purchased at:</strong> {{ ticket.created_at }}</p>
+
+{% if ticket.path_repr %}
+    <p><strong>Path (station codes):</strong> {{ ticket.path_repr }}</p>
+{% endif %}
+
+{% endblock %}

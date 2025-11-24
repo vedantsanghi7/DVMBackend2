@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DVM Metro System</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>DVM Metro Ticket System</h1>
+        <nav>
+    {% if user.is_authenticated %}
+        <a href="{% url 'metro_dashboard' %}">Dashboard</a>
+        <a href="{% url 'accounts_profile_edit' %}">Profile</a>
+
+        {% if user.is_staff %}
+            <a href="{% url 'metro_scanner_scan' %}">Scanner</a>
+            <a href="{% url 'metro_scanner_offline' %}">Offline Ticket</a>
+            <a href="{% url 'metro_footfall' %}">Footfall</a>
+            <a href="/admin/">Admin Site</a>
+        {% endif %}
+
+        <a href="{% url 'accounts_logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'accounts_login' %}">Login</a>
+        <a href="{% url 'accounts_signup' %}">Sign up</a>
+    {% endif %}
+</nav>
+
+        <hr>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

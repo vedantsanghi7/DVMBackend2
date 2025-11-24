@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Scanner - Create Offline Ticket</h2>
+
+{% if message %}
+    <p><strong>{{ message }}</strong></p>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Offline Ticket</button>
+</form>
+
+{% if ticket %}
+    <h3>Created Ticket</h3>
+    <p>ID: {{ ticket.id }}</p>
+    <p>From: {{ ticket.source.name }}</p>
+    <p>To: {{ ticket.destination.name }}</p>
+    <p>Price: ₹{{ ticket.price }}</p>
+    <p>Status: {{ ticket.status }}</p>
+    {% if ticket.path_repr %}
+        <p>Path: {{ ticket.path_repr }}</p>
+    {% endif %}
+{% endif %}
+{% endblock %}
