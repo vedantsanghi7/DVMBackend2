@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Daily Footfall per Station</h2>
+
+{% if rows %}
+    <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>Date</th>
+            <th>Station</th>
+            <th>Scans (Entry + Exit)</th>
+        </tr>
+        {% for row in rows %}
+            <tr>
+                <td>{{ row.day }}</td>
+                <td>{{ row.station__name|default:"(Unknown station)" }}</td>
+                <td>{{ row.count }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>No scans recorded yet.</p>
+{% endif %}
+{% endblock %}

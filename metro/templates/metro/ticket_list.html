@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Your Tickets</h2>
+
+{% if tickets %}
+    <ul>
+        {% for ticket in tickets %}
+            <li>
+                <a href="{% url 'metro_ticket_detail' ticket.id %}">
+                    {{ ticket.source.name }} → {{ ticket.destination.name }}
+                    (₹{{ ticket.price }}) [{{ ticket.status }}]
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You have not purchased any tickets yet.</p>
+{% endif %}
+
+{% endblock %}
